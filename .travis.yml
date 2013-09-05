@@ -8,6 +8,7 @@ branches:
     - master
 
 before_install:
+  - gem install calabash-android
   - sudo apt-get update -qq
   - if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch > /dev/null; fi
   - wget http://dl.google.com/android/android-sdk_r21-linux.tgz
@@ -28,4 +29,9 @@ before_script:
 
 script:
   - ant debug
+  - adb kill-server
+  - adb start-server
+  - adb devices
+  - adb install bin/Dashboard-debug.apk
+  - calabash-android run bin/Dashboard-debug.apk
   
