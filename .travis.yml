@@ -33,5 +33,5 @@ script:
   - adb start-server
   - adb devices
   - adb install bin/Dashboard-debug.apk
-  - calabash-android run bin/Dashboard-debug.apk
+  - calabash-android run bin/Dashboard-debug.apk TEST_SERVER_PORT=38002 -v
   
