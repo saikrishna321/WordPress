@@ -15,7 +15,7 @@ before_install:
   - export ANDROID_HOME=`pwd`/android-sdk-linux
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools  
   - android update sdk --filter platform-tools,android-16,android-13,sysimg-16  --no-ui --force
-  - echo no | android create avd -n emulator16Uk -t android-16 WVGA800 --force
+  - echo no | android create avd -n emulator16Uk -t android-16 WXGA800 --force
   - gem install calabash-android
   - gem install calabash-cucumber
 before_script:
