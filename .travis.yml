@@ -9,6 +9,7 @@ branches:
 
 before_install:
   - gem install calabash-android
+  - gem install calabash-cucumber
   - sudo apt-get update -qq
   - if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch > /dev/null; fi
   - wget http://dl.google.com/android/android-sdk_r21-linux.tgz
@@ -33,5 +34,5 @@ script:
   - adb start-server
   - adb devices
   - adb install bin/Dashboard-debug.apk
-  - calabash-android run bin/Dashboard-debug.apk TEST_SERVER_PORT=38002 -v
+  - calabash-android run bin/Dashboard-debug.apk -v
   
