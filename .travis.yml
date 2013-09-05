@@ -8,8 +8,6 @@ branches:
     - master
 
 before_install:
-  - gem install calabash-android
-  - gem install calabash-cucumber
   - sudo apt-get update -qq
   - if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch > /dev/null; fi
   - wget http://dl.google.com/android/android-sdk_r21-linux.tgz
@@ -17,14 +15,15 @@ before_install:
   - export ANDROID_HOME=`pwd`/android-sdk-linux
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools  
   - android update sdk --filter platform-tools,android-16,android-13,sysimg-16  --no-ui --force
-  - echo no | android create avd -n emulator16Uk -t android-16 --skin 320x480 --abi x86 --force
-
+  - echo no | android create avd -n emulator16Uk -t android-16 WVGA800 --force
+  - gem install calabash-android
+  - gem install calabash-cucumber
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
+  - sleep 4 # give xvfb some time to start
   - emulator -avd emulator16Uk -prop persist.sys.language=en -prop persist.sys.country=UK -noaudio -no-boot-anim &
-  - sleep 5 # give the emulator some time to start, otherwise the script will fail
+  - sleep 45 # give the emulator some time to start, otherwise the script will fail
   - chmod a+x ./wait_for_emulator.sh
   - ./wait_for_emulator.sh 
 
